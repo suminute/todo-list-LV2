@@ -1,12 +1,28 @@
 import uuid from "react-uuid";
 
 //Action Value
-const Todo_Save = "Todo_Save";
+const Save_Todo = "Save_Todo";
+const Delete_Todo = "Delete_Todo";
+const Toggle_Statustodo = "Toggle_Statustodo";
 
 //Action Creator
-export const todoSave = (payload) => {
+export const saveTodo = (payload) => {
   return {
-    type: Todo_Save,
+    type: Save_Todo,
+    payload,
+  };
+};
+
+export const deleteTodo = (payload) => {
+  return {
+    type: Delete_Todo,
+    payload,
+  };
+};
+
+export const toggleStatusTodo = (payload) => {
+  return {
+    type: Toggle_Statustodo,
     payload,
   };
 };
@@ -30,7 +46,7 @@ const initialState = [
 //Reducer
 const todos = (state = initialState, action) => {
   switch (action.type) {
-    case Todo_Save:
+    case Save_Todo:
       return [
         ...state,
         {
@@ -40,6 +56,10 @@ const todos = (state = initialState, action) => {
           isDone: false,
         },
       ];
+    case Delete_Todo:
+      return action.payload;
+    case Toggle_Statustodo:
+      return action.payload;
     default:
       return state;
   }
